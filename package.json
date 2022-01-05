@@ -1,0 +1,11 @@
+{
+  "name": "nest-vite-gql",
+  "version": "0.1.0",
+  "private": true,
+  "description": "simple boilerplate of GraphQL created by Vite & NestJS",
+  "scripts": {
+    "dev": "pnpm -r dev --parallel"
+  },
+  "author": "thundermiracle",
+  "license": "MIT"
+}
