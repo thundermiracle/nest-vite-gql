@@ -1,0 +1,10 @@
+type Tweet {
+  id: String!
+  text: String!
+  createdAt: String! # import scalar DateTime is recommended
+}
+
+type Query {
+  tweets: [Tweet]!
+  tweet(id: String!): Tweet
+}

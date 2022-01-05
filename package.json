@@ -4,6 +4,7 @@
   "private": true,
   "description": "simple boilerplate of GraphQL created by Vite & NestJS",
   "scripts": {
+    "setup:bk": "pnpm -C packages/backend init",
     "dev": "pnpm -r dev --parallel"
   },
   "author": "thundermiracle",
