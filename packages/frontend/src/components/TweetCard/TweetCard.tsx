@@ -1,5 +1,6 @@
 import { Avatar, Box, Flex, HStack, VStack } from "@chakra-ui/react";
 import React from "react";
+import { useSubscription } from "urql";
 import Content from "./Content";
 import StatusBar from "./StatusBar";
 import TweetMeta from "./TweetMeta";
@@ -16,6 +17,14 @@ interface Props {
   realtimeLikes?: number;
 }
 
+const TweetLikedSubscription = `
+subscription TweetLikedSubscription($tweetId: String!) {
+  tweetLiked(tweetId: $tweetId) {
+    likes
+  }
+}
+`;
+
 const PresetAvatarSrc = [
   "https://bit.ly/dan-abramov",
   "https://bit.ly/tioluwani-kolawole",
@@ -31,13 +40,26 @@ const getAvatarSrcByIndex = (index: number) => {
   return src;
 };
 
+const handleTweetLikedSubscription = (_: any, current: any) => {
+  return current?.tweetLiked;
+};
+
 const TweetCard: React.VFC<Props> = ({
   index,
   avatarSrc,
   tweet: { id, text, likes, createdAt },
-  realtimeLikes,
 }) => {
   const avatarSrcToUse = avatarSrc || getAvatarSrcByIndex(index);
+  const [resTweetLikedSub] = useSubscription(
+    {
+      query: TweetLikedSubscription,
+      variables: { tweetId: id },
+    },
+    handleTweetLikedSubscription
+  );
+
+  const subscribedTweetLikedData: { likes: number } | undefined =
+    resTweetLikedSub.data;
 
   return (
     <Flex flexDir="row" p="3" border="solid 1px #eee" mt="1px">
@@ -47,7 +69,11 @@ const TweetCard: React.VFC<Props> = ({
         <Content>{text}</Content>
         <StatusBar
           tweetId={id}
-          likes={realtimeLikes === undefined ? likes : realtimeLikes}
+          likes={
+            subscribedTweetLikedData === undefined
+              ? likes
+              : subscribedTweetLikedData.likes
+          }
         />
       </VStack>
     </Flex>

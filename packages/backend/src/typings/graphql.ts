@@ -36,7 +36,7 @@ export class TweetLiked {
 }
 
 export abstract class ISubscription {
-    abstract tweetLiked(): Nullable<TweetLiked> | Promise<Nullable<TweetLiked>>;
+    abstract tweetLiked(tweetId: string): Nullable<TweetLiked> | Promise<Nullable<TweetLiked>>;
 }
 
 export type DateTime = any;
