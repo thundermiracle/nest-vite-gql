@@ -1,10 +1,21 @@
+scalar DateTime
+
 type Tweet {
   id: String!
   text: String!
-  createdAt: String! # import scalar DateTime is recommended
+  likes: Int!
+  createdAt: DateTime!
 }
 
 type Query {
   tweets: [Tweet]!
   tweet(id: String!): Tweet
+}
+
+input CreateTweetInput {
+  text: String!
+}
+
+type Mutation {
+  createTweet(createTweetInput: CreateTweetInput!): Tweet!
 }

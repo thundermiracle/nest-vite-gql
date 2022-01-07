@@ -15,4 +15,10 @@ export class TweetsService {
       where: tweetWhereUniqueInput,
     });
   }
+
+  registerTweet(createTweetInput: Prisma.TweetCreateInput) {
+    return this.prismaService.tweet.create({
+      data: createTweetInput,
+    });
+  }
 }

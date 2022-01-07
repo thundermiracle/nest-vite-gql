@@ -20,7 +20,8 @@ datasource db {
 }
 
 model Tweet {
-  id        String @id @default(cuid())
+  id        String   @id @default(cuid())
   text      String
+  likes     Int      @default(0)
   createdAt DateTime @default(now())
 }

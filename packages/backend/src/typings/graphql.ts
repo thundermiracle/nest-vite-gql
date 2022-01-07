@@ -7,10 +7,15 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export class CreateTweetInput {
+    text: string;
+}
+
 export class Tweet {
     id: string;
     text: string;
-    createdAt: string;
+    likes: number;
+    createdAt: DateTime;
 }
 
 export abstract class IQuery {
@@ -19,4 +24,9 @@ export abstract class IQuery {
     abstract tweet(id: string): Nullable<Tweet> | Promise<Nullable<Tweet>>;
 }
 
+export abstract class IMutation {
+    abstract createTweet(createTweetInput: CreateTweetInput): Tweet | Promise<Tweet>;
+}
+
+export type DateTime = any;
 type Nullable<T> = T | null;

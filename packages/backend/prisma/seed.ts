@@ -8,6 +8,7 @@ async function main() {
     data: {
       id: 'cky1j74bc000007mf4gr8btdo',
       text: 'Hello, world!',
+      likes: 1,
       createdAt: new Date(),
     },
   });
