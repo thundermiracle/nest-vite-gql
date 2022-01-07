@@ -30,5 +30,14 @@ export abstract class IMutation {
     abstract addLike(id: string): Tweet | Promise<Tweet>;
 }
 
+export class TweetLiked {
+    id: string;
+    likes?: Nullable<number>;
+}
+
+export abstract class ISubscription {
+    abstract tweetLiked(): Nullable<TweetLiked> | Promise<Nullable<TweetLiked>>;
+}
+
 export type DateTime = any;
 type Nullable<T> = T | null;

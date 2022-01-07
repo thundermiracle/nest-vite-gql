@@ -13,6 +13,7 @@ interface Props {
     likes: number;
     createdAt: string;
   };
+  realtimeLikes?: number;
 }
 
 const PresetAvatarSrc = [
@@ -34,6 +35,7 @@ const TweetCard: React.VFC<Props> = ({
   index,
   avatarSrc,
   tweet: { id, text, likes, createdAt },
+  realtimeLikes,
 }) => {
   const avatarSrcToUse = avatarSrc || getAvatarSrcByIndex(index);
 
@@ -43,10 +45,13 @@ const TweetCard: React.VFC<Props> = ({
       <VStack flex="1" ml="3" spacing={0}>
         <TweetMeta createdAt={createdAt} />
         <Content>{text}</Content>
-        <StatusBar tweetId={id} likes={likes} />
+        <StatusBar
+          tweetId={id}
+          likes={realtimeLikes === undefined ? likes : realtimeLikes}
+        />
       </VStack>
     </Flex>
   );
 };
 
-export default TweetCard;
+export default React.memo(TweetCard);

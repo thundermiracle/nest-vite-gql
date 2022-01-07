@@ -20,3 +20,12 @@ type Mutation {
   createTweet(createTweetInput: CreateTweetInput!): Tweet!
   addLike(id: String!): Tweet!
 }
+
+type TweetLiked {
+  id: String!
+  likes: Int
+}
+
+type Subscription {
+  tweetLiked: TweetLiked
+}
