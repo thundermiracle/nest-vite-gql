@@ -1,4 +1,4 @@
-import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
+import { Resolver, Query, Args, Mutation, Subscription } from '@nestjs/graphql';
 import { CreateTweetInput } from 'src/typings/graphql';
 import { TweetsService } from './tweets.service';
 
@@ -19,5 +19,10 @@ export class TweetsResolver {
   @Mutation('createTweet')
   createOne(@Args('createTweetInput') createTweetInput: CreateTweetInput) {
     return this.tweetsService.registerTweet(createTweetInput);
+  }
+
+  @Mutation('addLike')
+  addLike(@Args('id') id: string) {
+    return this.tweetsService.addLike(id);
   }
 }

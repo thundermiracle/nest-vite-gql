@@ -5,6 +5,7 @@ import StatusBar from "./StatusBar";
 import TweetMeta from "./TweetMeta";
 
 interface Props {
+  index: number;
   avatarSrc?: string;
   tweet: {
     id: string;
@@ -24,18 +25,21 @@ const PresetAvatarSrc = [
   "https://bit.ly/sage-adebayo",
 ];
 
-const getRandomAvatarSrc = () => {
-  const randomIndex = Math.floor(Math.random() * PresetAvatarSrc.length);
-  return PresetAvatarSrc[randomIndex];
+const getAvatarSrcByIndex = (index: number) => {
+  const src = PresetAvatarSrc[index % PresetAvatarSrc.length];
+  return src;
 };
 
 const TweetCard: React.VFC<Props> = ({
+  index,
   avatarSrc,
   tweet: { id, text, likes, createdAt },
 }) => {
+  const avatarSrcToUse = avatarSrc || getAvatarSrcByIndex(index);
+
   return (
     <Flex flexDir="row" p="3" border="solid 1px #eee" mt="1px">
-      <Avatar src={avatarSrc || getRandomAvatarSrc()} />
+      <Avatar src={avatarSrcToUse} />
       <VStack flex="1" ml="3" spacing={0}>
         <TweetMeta createdAt={createdAt} />
         <Content>{text}</Content>

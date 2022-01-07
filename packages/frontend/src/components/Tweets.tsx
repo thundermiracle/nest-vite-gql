@@ -31,8 +31,8 @@ const Tweets: React.VFC<Props> = () => {
 
   return (
     <Box>
-      {data.tweets.map((tweet: any) => (
-        <TweetCard key={tweet.id} tweet={tweet} />
+      {data.tweets.map((tweet: any, index: number) => (
+        <TweetCard key={tweet.id} tweet={tweet} index={index} />
       ))}
     </Box>
   );

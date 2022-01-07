@@ -26,6 +26,8 @@ export abstract class IQuery {
 
 export abstract class IMutation {
     abstract createTweet(createTweetInput: CreateTweetInput): Tweet | Promise<Tweet>;
+
+    abstract addLike(id: string): Tweet | Promise<Tweet>;
 }
 
 export type DateTime = any;

@@ -18,4 +18,5 @@ input CreateTweetInput {
 
 type Mutation {
   createTweet(createTweetInput: CreateTweetInput!): Tweet!
+  addLike(id: String!): Tweet!
 }
