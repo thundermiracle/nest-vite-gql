@@ -25,30 +25,13 @@ const Tweets: React.VFC<Props> = () => {
     return <div>Loading...</div>;
   }
 
-  // if (error) {
-  //   return <div>Error: {error.message}</div>;
-  // }
-
-  const mockData = {
-    tweets: [
-      {
-        id: "1",
-        text: "Hello, world!",
-        likes: 0,
-        createdAt: "2020-01-01T00:00:00.000Z",
-      },
-      {
-        id: "2",
-        text: "Hello, world!",
-        likes: 0,
-        createdAt: "2020-01-01T00:00:00.000Z",
-      },
-    ],
-  };
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <Box>
-      {mockData.tweets.map((tweet: any) => (
+      {data.tweets.map((tweet: any) => (
         <TweetCard key={tweet.id} tweet={tweet} />
       ))}
     </Box>

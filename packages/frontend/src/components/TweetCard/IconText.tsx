@@ -10,7 +10,9 @@ const IconText: React.VFC<Props> = ({ icon, text }) => {
   return (
     <HStack spacing={2}>
       <IconButton aria-label="likes" icon={icon} />
-      <Box w="40px">{text}</Box>
+      <Box w="40px" color="InfoText">
+        {text}
+      </Box>
     </HStack>
   );
 };
