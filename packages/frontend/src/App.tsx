@@ -1,16 +1,14 @@
-import logo from "./logo.svg";
-import "./App.css";
-import Tweets from "./Tweets";
+import Tweets from "./components/Tweets";
+import MainLayout from "./layouts/MainLayout";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <MainLayout>
+      <header>
         <h2>All your tweets are here!</h2>
         <Tweets />
       </header>
-    </div>
+    </MainLayout>
   );
 }
 

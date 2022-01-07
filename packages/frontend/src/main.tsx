@@ -6,8 +6,9 @@ import {
   Provider as GQLProvider,
   subscriptionExchange,
 } from "urql";
-import "./index.css";
+import { ChakraProvider } from "@chakra-ui/react";
 import App from "./App";
+import { theme } from "./styles/theme";
 
 const client = createClient({
   url: "http://localhost:4000/graphql",
@@ -15,9 +16,11 @@ const client = createClient({
 
 ReactDOM.render(
   <React.StrictMode>
-    <GQLProvider value={client}>
-      <App />
-    </GQLProvider>
+    <ChakraProvider theme={theme}>
+      <GQLProvider value={client}>
+        <App />
+      </GQLProvider>
+    </ChakraProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
