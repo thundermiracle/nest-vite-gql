@@ -28,4 +28,5 @@ type TweetLiked {
 
 type Subscription {
   tweetLiked(tweetId: String!): TweetLiked
+  tweetCreated: Tweet
 }

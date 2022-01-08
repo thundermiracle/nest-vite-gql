@@ -20,8 +20,20 @@ export class TweetsResolver {
   }
 
   @Mutation('createTweet')
-  createOne(@Args('createTweetInput') createTweetInput: TweetCreateInput) {
-    return this.tweetsService.registerTweet(createTweetInput);
+  async createOne(
+    @Args('createTweetInput') createTweetInput: TweetCreateInput,
+  ) {
+    const response = await this.tweetsService.registerTweet(createTweetInput);
+
+    const targetTweet = await this.tweetsService.findOne({ id: response.id });
+    pubSub.publish('tweetCreated', { tweetCreated: targetTweet });
+
+    return response;
+  }
+
+  @Subscription('tweetCreated')
+  tweetCreated() {
+    return pubSub.asyncIterator('tweetCreated');
   }
 
   @Mutation('addLike')
