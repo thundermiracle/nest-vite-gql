@@ -35,7 +35,11 @@ export class TweetsResolver {
     return response;
   }
 
-  @Subscription('tweetLiked')
+  @Subscription('tweetLiked', {
+    filter(this: TweetsResolver, payload, variables) {
+      return payload.tweetLiked.id === variables.tweetId;
+    },
+  })
   tweetLiked() {
     return pubSub.asyncIterator('tweetLiked');
   }

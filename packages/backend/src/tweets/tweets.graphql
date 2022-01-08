@@ -27,5 +27,5 @@ type TweetLiked {
 }
 
 type Subscription {
-  tweetLiked: TweetLiked
+  tweetLiked(tweetId: String!): TweetLiked
 }
