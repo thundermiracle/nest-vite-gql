@@ -7,7 +7,7 @@ interface Props {
 
 const Content: React.VFC<Props> = ({ children }) => {
   return (
-    <Box w="100%" color="InfoText">
+    <Box w="100%" color="InfoText" whiteSpace="pre-line">
       {children}
     </Box>
   );
