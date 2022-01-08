@@ -7,7 +7,6 @@
   "license": "MIT",
   "scripts": {
     "init": "prisma migrate dev --name init && esno ./prisma/seed.ts",
-    "gen:type": "esno ./scripts/generate-typings.ts",
     "gen:prisma": "prisma generate --watch",
     "dev": "run-p gen:* start:dev",
     "prebuild": "rimraf dist",
@@ -33,6 +32,8 @@
     "@prisma/client": "^3.7.0",
     "apollo-server-core": "^3.6.1",
     "apollo-server-express": "^3.6.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
     "graphql": "^15.7.2",
     "graphql-iso-date": "^3.6.1",
     "graphql-subscriptions": "^2.0.0",

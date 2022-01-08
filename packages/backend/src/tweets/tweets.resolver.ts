@@ -1,6 +1,6 @@
 import { Resolver, Query, Args, Mutation, Subscription } from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
-import { CreateTweetInput } from 'src/typings/graphql';
+import { TweetCreateInput } from 'src/@generated/prisma-nestjs-graphql/tweet/tweet-create.input';
 import { TweetsService } from './tweets.service';
 
 const pubSub = new PubSub();
@@ -20,7 +20,7 @@ export class TweetsResolver {
   }
 
   @Mutation('createTweet')
-  createOne(@Args('createTweetInput') createTweetInput: CreateTweetInput) {
+  createOne(@Args('createTweetInput') createTweetInput: TweetCreateInput) {
     return this.tweetsService.registerTweet(createTweetInput);
   }
 

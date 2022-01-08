@@ -21,6 +21,7 @@ datasource db {
 
 model Tweet {
   id        String   @id @default(cuid())
+  /// @Validator.MinLength(1)
   text      String
   likes     Int      @default(0)
   createdAt DateTime @default(now())
